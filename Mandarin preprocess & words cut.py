@@ -40,8 +40,7 @@ def jieba_word_cut(jieba_dic, stop_words, article, saved_path):
             if w not in stop_words and not bool(re.match('[0-9]+', w)):
                 line.append(w)
         sentences.append(line)
-        if i%30000==0:
-            print(i, '/', len(data))
+
     
     # saved article_cutted as pickle file, for easy asscess as list format        
     with open(saved_path, "wb") as file:
