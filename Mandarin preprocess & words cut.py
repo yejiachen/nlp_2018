@@ -22,7 +22,7 @@ def article_preprocess(raw_article):
     article['idx'] = article.index
     preprocess_article = article
     
-    return article
+    return preprocess_article
 
 
 # word cut with jieba dictionary
