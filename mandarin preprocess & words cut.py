@@ -1,4 +1,5 @@
 # mandarin(Chinese) article preprocess & jieba words cut
+# saved article with word cutted as pickle file, for easy asscess as list format later on
 
 import pandas as pd
 import numpy as np
@@ -42,7 +43,7 @@ def jieba_word_cut(jieba_dic, stop_words, article, saved_path):
         if i%30000==0:
             print(i, '/', len(data))
     
-    # saved as pickle file, for easy asscess as list format        
+    # saved article_cutted as pickle file, for easy asscess as list format        
     with open(saved_path, "wb") as file:
         pickle.dump(sentences, file)
 
