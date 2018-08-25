@@ -44,8 +44,9 @@ def jieba_word_cut(jieba_dic, stop_words, article, saved_path):
     # saved article_cutted as pickle file, for easy asscess as list format        
     with open(saved_path, "wb") as file:
         pickle.dump(sentences, file)
-   
-    return sentences
+    
+    article_cutted = sentences
+    return article_cutted
 
 
 # Separate like & dislike article from article_preprocess by threshold
@@ -65,5 +66,5 @@ saved_path = 'saved_path_file_path'
 diff_threshold = 20
 
 article = article_preprocess(raw_article)
-sentences = jieba_word_cut(jieba_dic, stop_words, article, saved_path)
-liked_article = threshold(article, sentences, diff_threshold)
+article_cutted = jieba_word_cut(jieba_dic, stop_words, article, saved_path)
+liked_article = threshold(article, article_cutted, diff_threshold)
