@@ -1,5 +1,5 @@
-# mandarin(Chinese) article preprocess & jieba words cut
-# saved article with word cutted as pickle file, for easy asscess as list format later on
+# Mandarin(Chinese) article preprocess & jieba words cut
+# Saved article with word cutted as pickle file, for easy asscess as list format later on
 
 import pandas as pd
 import numpy as np
