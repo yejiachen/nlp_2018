@@ -40,20 +40,19 @@ def jieba_word_cut(jieba_dic, stop_words, article, saved_path):
             if w not in stop_words and not bool(re.match('[0-9]+', w)):
                 line.append(w)
         sentences.append(line)
-
-    
+        
     # saved article_cutted as pickle file, for easy asscess as list format        
     with open(saved_path, "wb") as file:
         pickle.dump(sentences, file)
-    
+   
     return sentences
+
 
 # Separate like & dislike article from article_preprocess by threshold
 def threshold(df, sentences, diff_threshold):
     df = df[abs(df['like']-df['dislike']) > diff_threshold].copy()
     df['type'] = np.clip(df['like']-df['dislike'], 0, 1)
     df = df.reset_index(drop=True)
-    
     print(df['type'].value_counts())
 
 
