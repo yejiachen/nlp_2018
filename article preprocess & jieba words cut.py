@@ -8,8 +8,7 @@ import pickle
 import jieba
 import jieba.posseg as pseg
 
-# article dataset columns = id, title, content, date, push,	boo
-
+# discussion website article dataset columns = id, title, content, date, count like, count dislike 
 def article_preprocess(raw_article):
     article = pd.read_csv(raw_article)
     
@@ -24,8 +23,8 @@ def article_preprocess(raw_article):
     
     return article
 
-# word cut with jieba dictionary
 
+# word cut with jieba dictionary
 def jieba_word_cut(jieba_dic, stop_words, article, saved_path):
     
     jieba.set_dictionary(jieba_dic)
@@ -36,11 +35,9 @@ def jieba_word_cut(jieba_dic, stop_words, article, saved_path):
     for i, text in enumerate(data):
         line = []
         for w in jieba.cut(text, cut_all=False):
-
             ## set rules, ex.remove stopwords and digits
             if w not in stop_words and not bool(re.match('[0-9]+', w)):
                 line.append(w)
-
         sentences.append(line)
         if i%30000==0:
             print(i, '/', len(data))
@@ -49,8 +46,8 @@ def jieba_word_cut(jieba_dic, stop_words, article, saved_path):
     with open(saved_path, "wb") as file:
         pickle.dump(sentences, file)
 
+        
 # main()
-
 raw_article = 'raw_article_file_path'
 jieba_dic = 'jieba_dic_file_path'
 stop_words = 'stop_words_list_file_path'
