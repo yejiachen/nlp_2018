@@ -27,4 +27,4 @@ def word2vec(sg, vec_size, min_count_of_each_word, window_size, n_epoch):
         model.train(data, total_examples=len(data), epochs=1)
 
     # save model
-    model.save('word2vec_model/CBOW')
+    model.save('word2vec_model/CBOW.wv.syn0.npy')
