@@ -50,8 +50,8 @@ def jieba_word_cut(jieba_dic, stop_words, article, saved_path):
 
 # Separate like & dislike article from article_preprocess by threshold
 def threshold(df, sentences, diff_threshold):
-    df = df[abs(df['push']-df['boo']) > diff_threshold].copy()
-    df['type'] = np.clip(df['push']-df['boo'], 0, 1)
+    df = df[abs(df['like']-df['dislike']) > diff_threshold].copy()
+    df['type'] = np.clip(df['like']-df['dislike'], 0, 1)
     df = df.reset_index(drop=True)
     
     print(df['type'].value_counts())
