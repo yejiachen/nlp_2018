@@ -66,4 +66,4 @@ diff_threshold = 20
 
 article = article_preprocess(raw_article)
 sentences = jieba_word_cut(jieba_dic, stop_words, article, saved_path)
-threshold(article, sentences, diff_threshold)
+liked_article = threshold(article, sentences, diff_threshold)
