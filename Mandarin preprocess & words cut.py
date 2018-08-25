@@ -54,6 +54,7 @@ def threshold(df, sentences, diff_threshold):
     df['type'] = np.clip(df['like']-df['dislike'], 0, 1)
     df = df.reset_index(drop=True)
     print(df['type'].value_counts())
+    return df
 
 
 # main()
