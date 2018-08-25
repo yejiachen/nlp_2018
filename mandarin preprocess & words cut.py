@@ -1,4 +1,4 @@
-# article preprocess & words cut
+# mandarin(Chinese) article preprocess & jieba words cut
 
 import pandas as pd
 import numpy as np
