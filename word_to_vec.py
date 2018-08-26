@@ -31,7 +31,17 @@ def word2vec(sg, vec_size, min_count_of_each_word, window_size, n_epoch):
     model.save('word2vec_model/CBOW.wv.syn0.npy')
 
     
-# Application of word2vec
+# main()
+sg = 0
+vec_size = 256
+min_count_of_each_word = 5
+window_size = 5
+n_epoch = 5
+word2vec(sg, vec_size, min_count_of_each_word, window_size, n_epoch)
+
+
+###############  Application of word2vec  ###############
+
 # load word2vec model
 model = word2vec.Word2Vec.load('/word2vec_model/CBOW.wv.syn0.npy')
 # get most similarity with given words
@@ -98,3 +108,5 @@ df.head(n=5)
 # print every cluster of words
 data = pd.concat([d['words'].reset_index(drop=True).rename(columns={0: k}) for k, d in df.groupby('no. cluster')], axis=1)
 data
+
+# end of word to vector
