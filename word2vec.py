@@ -75,3 +75,26 @@ model.wv.most_similar(positive=['nvidia', 'GPU'], negative=['google'])
         # ('Intel', 0.5192126035690308),
         # ('CPU', 0.5113897919654846),
         # ('intel', 0.5091017484664917)]
+        
+# clustering
+
+# create a dictionary: words as key ; count as values
+words = {word: vocab.count for word, vocab in model.wv.vocab.items()}
+# sort and select the top 10000 count of words
+words = sorted(words.items(), key=lambda x: x[1], reverse=True)
+words = words[:10000]
+words = np.array(words)[:, 0]
+
+# extract the word vectors 
+vecs = model.wv[words]
+# run clustering algorithm
+kmeans = KMeans(n_clusters=50)
+cluster = kmeans.fit_predict(vecs)
+
+# print the result
+df = pd.DataFrame([words.tolist(), cluster.tolist()], index=['words', 'no. cluster']).T
+df.head(n=5)
+
+# print every cluster of words
+data = pd.concat([d['words'].reset_index(drop=True).rename(columns={0: k}) for k, d in df.groupby('no. cluster')], axis=1)
+data
